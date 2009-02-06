@@ -8,7 +8,7 @@ var url = "";
 /* Example. role[name]=manager&role[comments]=commentcomment */
 var parameters = "";
 
-var handlerUrl = "lib/xml_rpc_handler.php?url="+url+"&type="+string;
+var handlerUrl = "lib/crmple_remote_client.php?url="+url+"&type="+string;
 
 $(function(){
   $.post(handlerUrl, { data: parameters }, function(data){

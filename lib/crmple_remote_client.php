@@ -5,7 +5,8 @@
  * Handles remote ajax requests and responses.
  */
  
- function getUrl($url) {
+ function getUrl($url) 
+ {
    $ch = curl_init();
    $timeout = 5;
    curl_setopt($ch, CURLOPT_URL, $url);
@@ -18,7 +19,8 @@
    return $results;
  }
  
- function sendPostRequest($url, $post = array()) {
+ function sendPostRequest($url, $post = array()) 
+ {
    $ch = curl_init();
    $timeout = 7;
    $params = $post['data'];
@@ -35,7 +37,8 @@
    return $results;
  }
  
- function run() {
+ function run() 
+ {
    switch ($_SERVER['REQUEST_METHOD']) {
      case 'GET': 
      print getUrl($_GET['url']); break;

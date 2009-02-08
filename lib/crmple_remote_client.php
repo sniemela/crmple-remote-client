@@ -24,9 +24,6 @@
    $ch = curl_init();
    $timeout = 7;
    $params = $post['data'];
-   if ($_GET['type'] == 'json') {
-     $params = json_encode($params);
-   }
    
    curl_setopt($ch, CURLOPT_URL, $url);
    curl_setopt($ch, CURLOPT_POST, 1);

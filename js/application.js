@@ -3,16 +3,18 @@
 */
 
 /* Crmple application url. Example: domain.com/people.xml */
-var url = "http://localhost:3000/roles.xml";
+var url           = "http://localhost:3000/people.xml";
 
-var handlerUrl = "lib/crmple_remote_client.php?url="+url+"&type=xml";
+var peopleForm    = "http://localhost:3000/people/new.xml";
+var handlerUrl    = "lib/crmple_remote_client.php?url="+url+"&type=xml";
 var statusWrapper = '#status';
+var formWrapper   = '#crmple_person';
 
 $(function(){
-  $('#crmple').submit(function(){
-    var parameters = buildParams('#crmple input, #crmple textarea', 'role');
+  $(formWrapper).buildForm(peopleForm).submit(function(){
+    var params = buildRailsParams(formWrapper + " input, " + formWrapper + " textarea");
     
-    $.post(handlerUrl, {data: parameters}, function(data){
+    $.post(handlerUrl, {data: params}, function(data){
       handleResponse(data);
     });
   });
@@ -29,7 +31,7 @@ $(function(){
     errs = $(data).find('error').length;
     return (errs > 0);
   }
-  
+
   function getErrors(data) {
     $(statusWrapper).html('<ul>');
     $(data).find('error').each(function(){
@@ -48,5 +50,17 @@ $(function(){
       }
     });
     return parts.join('&');
+  }
+  
+  function buildRailsParams(inputs) {
+    var $inputs = $(inputs);
+    var values = [];
+    $inputs.each(function(i, el){
+      if ($(el).attr('type') != 'submit') {
+        var param = el.name + '=' + $(el).val();
+        values.push(param);
+      }
+    });
+    return values.join('&');
   }
 });

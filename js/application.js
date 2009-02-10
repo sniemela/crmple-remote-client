@@ -12,7 +12,7 @@ var formWrapper   = '#crmple_person';
 
 $(function(){
   $(formWrapper).buildForm(peopleForm).submit(function(){
-    var params = buildRailsParams(formWrapper + " input, " + formWrapper + " textarea");
+    var params = buildRailsParams(formWrapper + " :input");
     
     $.post(handlerUrl, {data: params}, function(data){
       handleResponse(data);
@@ -53,7 +53,13 @@ $(function(){
   }
   
   function buildRailsParams(inputs) {
-    var $inputs = $(inputs);
+    var $inputs = $(inputs).map(function(i, e){
+      if (($(e).is(":checkbox") || $(e).is(":radio")) && !$(e).is(":checked")) {
+        return;
+      } else {
+        return e;
+      }
+    });
     var values = [];
     $inputs.each(function(i, el){
       if ($(el).attr('type') != 'submit') {

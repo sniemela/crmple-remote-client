@@ -23,6 +23,10 @@
            $(el).replaceWith($(el).html());
          });
          $form.attr('onSubmit', 'return false').attr('action', '').attr('method', 'post');
+         // Remove hidden fields without an id
+         $form.find("input[type=hidden]:not('[id]')").each(function(i, el){ 
+           $(el).remove();
+         });
        });
      });
    }

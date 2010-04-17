@@ -3,9 +3,9 @@
 */
 
 /* Crmple application url. Example: domain.com/people.xml */
-var url           = "http://localhost:3000/people.xml";
+var url           = "http://localhost/crmple-remote-client/people.xml";
 
-var peopleForm    = "http://localhost:3000/people/new.xml";
+var peopleForm    = "http://localhost/crmple-remote-client/new.xml";
 var handlerUrl    = "lib/crmple_remote_client.php?url="+url+"&type=xml";
 var statusWrapper = '#status';
 var formWrapper   = '#crmple_person';

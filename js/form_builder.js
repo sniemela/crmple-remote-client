@@ -18,7 +18,7 @@
        var $form = $(this);
        var requestHandler = settings['handler'] + "?url=" + url;
        $.get(requestHandler, function(data){
-         $form.html($(data).text());
+         $form.html(data);
          $form.children('form').each(function(i, el){ 
            $(el).replaceWith($(el).html());
          });

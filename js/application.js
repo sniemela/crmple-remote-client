@@ -3,9 +3,9 @@
 */
 
 /* Crmple application url. Example: domain.com/people.xml */
-var url           = "http://localhost/crmple-remote-client/people.xml";
+var url           = "http://localhost/~simo/crmple-remote-client/people.xml";
 
-var peopleForm    = "http://localhost/crmple-remote-client/new.xml";
+var peopleForm    = "http://localhost/~simo/crmple-remote-client/new.xml";
 var handlerUrl    = "lib/crmple_remote_client.php?url="+url+"&type=xml";
 var statusWrapper = '#status';
 var formWrapper   = '#crmple_person';
@@ -17,6 +17,7 @@ $(function(){
     $.post(handlerUrl, {data: params}, function(data){
       handleResponse(data);
     });
+    return false;
   });
   
   function handleResponse(data) {
